@@ -2,13 +2,22 @@
 import { Button, Text, TextField } from "@radix-ui/themes";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { createIssue } from "@/app/lib/actions";
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" disabled={pending}>
+      Create
+      {pending && "......"}
+    </Button>
+  );
+};
 
 export default function CreateIssue() {
   const initialState = { errors: {}, message: "" };
   const [state, dispatch] = useFormState(createIssue, initialState);
-  console.log({ state });
   return (
     <form className=" max-w-xl space-y-3" action={dispatch}>
       <TextField.Root placeholder="Title" type="text" name="title" />
@@ -24,7 +33,7 @@ export default function CreateIssue() {
       <Text color="red" size="1" as="p">
         {state?.errors.description?.length && state.errors.description[0]}
       </Text>
-      <Button type="submit">Create</Button>
+      <SubmitButton />
     </form>
   );
 }
