@@ -1,16 +1,9 @@
 "use server";
-import { z } from "zod";
 import { CreateIssuePrevState, Issue } from "./definitions";
 import prisma from "../db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-
-export async function getIssues() {}
-
-const createIssueSchema = z.object({
-  title: z.string().min(1).max(255),
-  description: z.string().min(1),
-});
+import { createIssueSchema } from "./validation-schemas";
 
 export async function createIssue(
   prevState: CreateIssuePrevState,
@@ -40,3 +33,5 @@ export async function createIssue(
   revalidatePath("/issues");
   redirect("/issues");
 }
+
+export async function getIssues() {}
