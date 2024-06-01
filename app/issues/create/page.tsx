@@ -1,9 +1,9 @@
 "use client";
 import { Button, Text, TextField } from "@radix-ui/themes";
-import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useFormState, useFormStatus } from "react-dom";
 import { createIssue } from "@/app/lib/actions";
+import dynamic from "next/dynamic";
 
 const SubmitButton = () => {
   const { pending } = useFormStatus();
@@ -14,6 +14,10 @@ const SubmitButton = () => {
     </Button>
   );
 };
+
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 
 export default function CreateIssue() {
   const initialState = { errors: {}, message: "" };
