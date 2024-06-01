@@ -1,5 +1,5 @@
 "use server";
-import { CreateIssuePrevState, Issue } from "./definitions";
+import { CreateIssuePrevState } from "./definitions";
 import prisma from "../db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -26,7 +26,6 @@ export async function createIssue(
     });
   } catch (error) {
     return {
-      errors: error,
       message: "Failed to create issue. Database error!",
     };
   }

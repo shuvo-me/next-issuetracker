@@ -22,7 +22,7 @@ export default function CreateIssue() {
     <form className=" max-w-xl space-y-3" action={dispatch}>
       <TextField.Root placeholder="Title" type="text" name="title" />
       <Text color="red" size="1">
-        {state?.errors.title?.length && state.errors.title[0]}
+        {state.errors?.title?.length && state.errors.title[0]}
       </Text>
       <SimpleMDE
         placeholder="description"
@@ -31,7 +31,7 @@ export default function CreateIssue() {
         }
       />
       <Text color="red" size="1" as="p">
-        {state?.errors.description?.length && state.errors.description[0]}
+        {state.errors?.description?.length && state.errors.description[0]}
       </Text>
       <SubmitButton />
     </form>

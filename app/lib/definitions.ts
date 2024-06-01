@@ -5,8 +5,8 @@ export type Issue = {
 
 export type CreateIssuePrevState = {
   errors?: {
-    title?: string;
-    description?: string;
+    title?: string[];
+    description?: string[];
   };
-  message?: string | null;
+  message?: string;
 };
