@@ -1,6 +1,6 @@
 "use server";
 import { CreateIssuePrevState } from "./definitions";
-import prisma from "../db";
+import prisma from "@/prisma";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createIssueSchema } from "./validation-schemas";
